@@ -1,0 +1,727 @@
+Travis CI
+There are no broadcasts
+
+Dashboard
+
+Changelog
+Documentation
+Help
+Merlin Patterson (they/them) avatar
+
+ paypal / paypal-messaging-components
+ build:passed
+Current
+
+Branches
+
+Build History
+
+Pull Requests
+
+Build #1063
+More options
+ Pull Request #251 fix: handle modal prop changes correctly
+ Commit fb12367
+ #251: fix: handle modal prop changes correctly
+ Branch develop
+Ryan Gilbert avatar Ryan Gilbert
+ #1063 failed
+ Ran for 26 min 27 sec
+ 15 days ago
+ Shared repository
+ Restart build
+ AMD64
+ Node.js: 10
+DIRTY_SNAPSHOTS=0
+Job log
+
+View config
+ Remove log  Raw log
+0.15s0.10s0.00s0.07s
+worker_info
+Worker information
+0.17s0.01s0.00s0.01s
+system_info
+Build system information
+0.01s0.01s0.62s0.23s0.06s0.00s0.04s0.00s0.01s0.01s0.01s0.01s0.01s0.00s0.00s0.03s0.00s0.01s0.31s0.00s0.00s0.00s0.01s0.00s0.12s0.01s0.86s0.00s0.00s6.04s0.00s2.59s0.00s2.38s
+docker_mtu
+resolvconf
+hosts.before
+hosts
+hosts.after
+git.checkout
+1.53s$ git clone --depth=50 https://github.com/paypal/paypal-messaging-components.git paypal/paypal-messaging-components
+0.01s
+Encrypted environment variables have been removed for security reasons.
+See https://docs.travis-ci.com/user/pull-requests/#pull-requests-and-security-restrictions
+Setting environment variables from .travis.yml
+$ export DIRTY_SNAPSHOTS=0
+nvm.install
+3.20s$ nvm install 10
+$ node --version
+v10.22.0
+$ npm --version
+6.14.6
+$ nvm --version
+0.35.3
+before_install
+6.41s$ npm i -g npm@6
+install.npm
+79.98s$ npm install
+before_script.1
+0.01s$ npm run dev:snapshot &
+before_script.2
+20.02s$ sleep 20
+28.16s$ npm run lint
+> @paypal/messaging-components@1.12.3 lint /home/travis/build/paypal/paypal-messaging-components
+> eslint . --ext .js,.jsx
+ℹ ｢wdm｣: Hash: c795248e3d6c8c0e180def8955121372fcbd6aca
+Version: webpack 4.44.1
+Child
+    Hash: c795248e3d6c8c0e180d
+    Time: 18226ms
+    Built at: 08/13/2020 3:07:02 PM
+           Asset      Size     Chunks             Chunk Names
+     merchant.js  4.81 MiB   merchant  [emitted]  merchant
+    messaging.js  4.74 MiB  messaging  [emitted]  messaging
+    Entrypoint messaging = messaging.js
+    Entrypoint merchant = merchant.js
+    [0] multi (webpack)-dev-server/client?http://localhost.paypal.com:8080 ./src/index.js 40 bytes {messaging} [built]
+    [1] multi (webpack)-dev-server/client?http://localhost.paypal.com:8080 ./src/legacy/index.js 40 bytes {merchant} [built]
+    [./node_modules/@babel/runtime/helpers/esm/extends.js] 397 bytes {messaging} {merchant} [built]
+    [./node_modules/core-js-pure/stable/array/from.js] 70 bytes {messaging} {merchant} [built]
+    [./node_modules/core-js-pure/stable/array/includes.js] 74 bytes {messaging} {merchant} [built]
+    [./node_modules/core-js-pure/stable/object/entries.js] 74 bytes {messaging} {merchant} [built]
+    [./node_modules/core-js-pure/stable/string/includes.js] 75 bytes {messaging} {merchant} [built]
+    [./node_modules/core-js-pure/stable/string/starts-with.js] 78 bytes {messaging} {merchant} [built]
+    [./node_modules/webpack-dev-server/client/index.js?http://localhost.paypal.com:8080] (webpack)-dev-server/client?http://localhost.paypal.com:8080 4.29 KiB {messaging} {merchant} [built]
+    [./node_modules/webpack-dev-server/client/overlay.js] (webpack)-dev-server/client/overlay.js 3.51 KiB {messaging} {merchant} [built]
+    [./node_modules/webpack-dev-server/client/socket.js] (webpack)-dev-server/client/socket.js 1.53 KiB {messaging} {merchant} [built]
+    [./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] (webpack)-dev-server/client/utils/createSocketUrl.js 2.91 KiB {messaging} {merchant} [built]
+    [./node_modules/webpack-dev-server/client/utils/log.js] (webpack)-dev-server/client/utils/log.js 964 bytes {messaging} {merchant} [built]
+    [./src/index.js] 103 bytes {messaging} [built]
+    [./src/legacy/index.js] 10.9 KiB {merchant} [built]
+        + 449 hidden modules
+Child
+    Hash: ef8955121372fcbd6aca
+    Time: 31887ms
+    Built at: 08/13/2020 3:07:15 PM
+                                Asset      Size  Chunks             Chunk Names
+                smart-credit-modal.js   2.7 MiB    main  [emitted]  main
+    smart-credit-modal.js.LICENSE.txt  51 bytes          [emitted]
+    Entrypoint main = smart-credit-modal.js
+    [0] multi (webpack)-dev-server/client?http://localhost.paypal.com:8080 ./src/modal/index.js 40 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/ansi-html/index.js] 4.27 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/html-entities/lib/index.js] 457 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/loglevel/lib/loglevel.js] 7.48 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/url/url.js] 22.3 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/index.js?http://localhost.paypal.com:8080] (webpack)-dev-server/client?http://localhost.paypal.com:8080 4.29 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/overlay.js] (webpack)-dev-server/client/overlay.js 3.51 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/socket.js] (webpack)-dev-server/client/socket.js 1.53 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/utils/createSocketUrl.js] (webpack)-dev-server/client/utils/createSocketUrl.js 2.91 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/utils/log.js] (webpack)-dev-server/client/utils/log.js 964 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/utils/reloadApp.js] (webpack)-dev-server/client/utils/reloadApp.js 1.59 KiB {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/client/utils/sendMessage.js] (webpack)-dev-server/client/utils/sendMessage.js 402 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack-dev-server/node_modules/strip-ansi/index.js] (webpack)-dev-server/node_modules/strip-ansi/index.js 162 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./node_modules/webpack/hot sync ^\.\/log$] (webpack)/hot sync nonrecursive ^\.\/log$ 170 bytes {main} [built]
+        ModuleConcatenation bailout: Module is not an ECMAScript module
+    [./src/modal/index.js] ./src/modal/index.js + 108 modules 339 KiB {main} [built]
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/@paypal/sdk-logos/index.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/array/find.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/array/from.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/array/includes.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/object/assign.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/object/entries.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/string/includes.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/core-js-pure/stable/string/starts-with.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/jsx-pragmatic/index.js (<- Module is not an ECMAScript module)
+        ModuleConcatenation bailout: Cannot concat with ./node_modules/zalgo-promise/index.js (<- Module is not an ECMAScript module)
+        | ./src/modal/index.js 180 bytes [built]
+        |     ModuleConcatenation bailout: Module is referenced from these modules with unsupported syntax: multi (webpack)-dev-server/client?http://localhost.paypal.com:8080 ./src/modal/index.js (referenced with single entry)
+        | ./node_modules/preact/dist/preact.module.js 9.68 KiB [built]
+        | ./src/modal/Modal.jsx 578 bytes [built]
+        | ./src/modal/lib/context.js 511 bytes [built]
+        | ./src/modal/lib/transition.jsx 1.05 KiB [built]
+        | ./src/modal/parts/Container.jsx 2.47 KiB [built]
+        | ./src/modal/styles/index.js 362 bytes [built]
+        | ./src/modal/content/Content.jsx 1.51 KiB [built]
+        | ./node_modules/preact/hooks/dist/hooks.module.js 2.5 KiB [built]
+        | ./src/modal/lib/hooks/helpers.js 753 bytes [built]
+        | ./src/modal/lib/hooks/index.js 252 bytes [built]
+        | ./src/modal/lib/scroll.jsx 1.52 KiB [built]
+        | ./src/modal/parts/Header.jsx 2.47 KiB [built]
+        | ./src/modal/parts/Overlay.jsx 2.07 KiB [built]
+        | ./src/modal/styles/fonts.css 2.9 KiB [built]
+        |     + 94 hidden modules
+        + 125 hidden modules
+ℹ ｢wdm｣: Compiled successfully.
+/home/travis/build/paypal/paypal-messaging-components/src/messages/models/Banner/index.js
+  177:17  warning  Unexpected console statement  no-console
+  188:17  warning  Unexpected console statement  no-console
+/home/travis/build/paypal/paypal-messaging-components/src/messages/services/logger/index.js
+  118:17  warning  Unexpected console statement  no-console
+  125:9   warning  Unexpected console statement  no-console
+/home/travis/build/paypal/paypal-messaging-components/utils/devServerProxy.js
+  145:31  warning  Unexpected console statement  no-console
+  203:31  warning  Unexpected console statement  no-console
+✖ 6 problems (0 errors, 6 warnings)
+The command "npm run lint" exited with 0.
+11.61s$ npm run test
+> @paypal/messaging-components@1.12.3 test /home/travis/build/paypal/paypal-messaging-components
+> jest
+ PASS  tests/unit/spec/src/messages/models/Container/events.test.js
+ PASS  tests/unit/spec/src/utils/index.test.js
+ PASS  tests/unit/spec/src/messages/models/Container/setSize.test.js
+ PASS  tests/unit/spec/src/messages/models/Container/stats.test.js
+ PASS  tests/unit/spec/src/messages/models/Banner/validateOptions.test.js
+ PASS  tests/unit/spec/src/messages/components/Modal/index.test.js
+ PASS  tests/unit/spec/src/modal/lib/hooks/applyNow.test.js
+ PASS  tests/unit/spec/src/messages/models/Banner/index.test.js
+ PASS  tests/unit/spec/src/messages/models/Container/insertMarkup.test.js
+ PASS  tests/unit/spec/src/messages/models/Container/index.test.js
+ PASS  tests/unit/spec/src/modal/lib/hooks/helpers.test.js
+ PASS  tests/unit/spec/src/modal/lib/hooks/transitionState.test.js
+ PASS  tests/unit/spec/src/modal/lib/transition.test.js
+ PASS  tests/unit/spec/src/modal/lib/hooks/calculator.test.js
+Test Suites: 14 passed, 14 total
+Tests:       10 skipped, 6 todo, 49 passed, 65 total
+Snapshots:   0 total
+Time:        10.381s
+Ran all test suites.
+The command "npm run test" exited with 0.
+1415.91s$ ./scripts/snapshot-tests/run-tests.sh
+> @paypal/messaging-components@1.12.3 test:func /home/travis/build/paypal/paypal-messaging-components
+> jest --projects tests/functional
+ PASS  tests/functional/spec/payload.test.js (59.123s)
+ PASS  tests/functional/spec/US/text.test.js (269.129s)
+ PASS  tests/functional/spec/GB/text.test.js (30.959s)
+ FAIL  tests/functional/spec/US/modal/modalText.test.js (104.184s)
+  ● US EZP and NI basic modal functionality tests 'DEV0000000PSZ' › switch between EZP and NI content by clicking tabs - text 411
+    Expected image to match or be a close match to snapshot but was 0.6783361791499828% different from snapshot (2038 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/EZP-and-NI-tabs-click-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+ › 1 snapshot failed.
+ PASS  tests/functional/spec/DE/text.test.js (52.274s)
+ PASS  tests/functional/spec/US/flex.test.js (217.551s)
+ PASS  tests/functional/spec/GB/flex.test.js (37.287s)
+ PASS  tests/functional/spec/US/modal/modalFlex.test.js (50.858s)
+ PASS  tests/functional/spec/GB/modal/modalText.test.js (77.681s)
+ PASS  tests/functional/spec/DE/flex.test.js (67.851s)
+ FAIL  tests/functional/spec/DE/modal/modalFlexCalc.test.js (117.279s)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator flex 1920
+    Expected image to match or be a close match to snapshot but was 1.089699074074074% different from snapshot (22596 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 1920
+    Expected image to match or be a close match to snapshot but was 1.0950520833333333% different from snapshot (22707 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator flex 1920
+    Expected image to match or be a close match to snapshot but was 1.1056134259259258% different from snapshot (22926 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 1920
+    Expected image to match or be a close match to snapshot but was 1.1307870370370372% different from snapshot (23448 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator flex 1920
+    Expected image to match or be a close match to snapshot but was 0.9952739197530863% different from snapshot (20638 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 1920
+    Expected image to match or be a close match to snapshot but was 0.9915605709876544% different from snapshot (20561 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator flex 411
+    Expected image to match or be a close match to snapshot but was 5.693297519313276% different from snapshot (17105 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 411
+    Expected image to match or be a close match to snapshot but was 5.709274033836927% different from snapshot (17153 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator flex 411
+    Expected image to match or be a close match to snapshot but was 5.801138992347915% different from snapshot (17429 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 411
+    Expected image to match or be a close match to snapshot but was 5.93460945743091% different from snapshot (17830 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator flex 411
+    Expected image to match or be a close match to snapshot but was 4.885152159658635% different from snapshot (14677 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table flex 411
+    Expected image to match or be a close match to snapshot but was 4.8432138090340535% different from snapshot (14551 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-flex-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+ › 12 snapshots failed.
+ FAIL  tests/functional/spec/DE/modal/modalTextCalc.test.js (119.156s)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator text 1920
+    Expected image to match or be a close match to snapshot but was 1.0895543981481481% different from snapshot (22593 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 1920
+    Expected image to match or be a close match to snapshot but was 1.0950520833333333% different from snapshot (22707 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator text 1920
+    Expected image to match or be a close match to snapshot but was 1.1046971450617284% different from snapshot (22907 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 1920
+    Expected image to match or be a close match to snapshot but was 1.1307870370370372% different from snapshot (23448 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › update finance terms when user updates amount passed into calculator text 1920
+    Expected image to match or be a close match to snapshot but was 0.993923611111111% different from snapshot (20610 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 1920, height: 1080 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 1920
+    Expected image to match or be a close match to snapshot but was 0.9915605709876544% different from snapshot (20561 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator text 411
+    Expected image to match or be a close match to snapshot but was 5.69629311578646% different from snapshot (17114 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 411
+    Expected image to match or be a close match to snapshot but was 5.709274033836927% different from snapshot (17153 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator text 411
+    Expected image to match or be a close match to snapshot but was 5.804467432873675% different from snapshot (17439 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 411
+    Expected image to match or be a close match to snapshot but was 5.93460945743091% different from snapshot (17830 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › update finance terms when user updates amount passed into calculator text 411
+    Expected image to match or be a close match to snapshot but was 4.889146288289547% different from snapshot (14689 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/DE-update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● DE Modal Calculator Tests { width: 411, height: 731 } › when an amount is passed into DE PP installments message, the correct financing terms are loaded in a table text 411
+    Expected image to match or be a close match to snapshot but was 4.8432138090340535% different from snapshot (14551 differing pixels).
+    See diff for details: tests/functional/snapshots/DE/DEV0000000IAZ/modal/__diff_output__/ezp-message-content-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+ › 12 snapshots failed.
+ FAIL  tests/functional/spec/US/modal/modalCalc.test.js (98.712s)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } 1 › show error message when entering a non-qualifying amount inside the calculator
+    Expected image to match or be a close match to snapshot but was 0.6721643518518519% different from snapshot (13938 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/non-qualifying-ezp-amount-error-message-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } 1 › when an amount is passed into EZP message, the correct financing terms are loaded in a table
+    Expected image to match or be a close match to snapshot but was 0.6627604166666667% different from snapshot (13743 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } 1 › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 0.8329475308641976% different from snapshot (17272 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } 1 › when an ezp message is clicked ezp content is loaded including a calculator for finance terms
+    Expected image to match or be a close match to snapshot but was 0.6627604166666667% different from snapshot (13743 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-message-content-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } NaN › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 1.0981867283950617% different from snapshot (22772 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 1920, height: 1080 } 500 › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 1.0966917438271604% different from snapshot (22741 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-1920-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } 1 › show error message when entering a non-qualifying amount inside the calculator
+    Expected image to match or be a close match to snapshot but was 0.7528932469270172% different from snapshot (2262 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/non-qualifying-ezp-amount-error-message-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } 1 › when an amount is passed into EZP message, the correct financing terms are loaded in a table
+    Expected image to match or be a close match to snapshot but was 0.8061482953391849% different from snapshot (2422 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } 1 › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 3.813061466311189% different from snapshot (11456 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } 1 › when an ezp message is clicked ezp content is loaded including a calculator for finance terms
+    Expected image to match or be a close match to snapshot but was 0.8061482953391849% different from snapshot (2422 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-message-content-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } NaN › show error message when entering a non-qualifying amount inside the calculator
+    Expected image to match or be a close match to snapshot but was 0.44700956260963054% different from snapshot (1343 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/non-qualifying-ezp-amount-error-message-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } NaN › when an amount is passed into EZP message, the correct financing terms are loaded in a table
+    Expected image to match or be a close match to snapshot but was 0.5069214920733189% different from snapshot (1523 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } NaN › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 0.6121002126873496% different from snapshot (1839 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } NaN › when an ezp message is clicked ezp content is loaded including a calculator for finance terms
+    Expected image to match or be a close match to snapshot but was 0.5069214920733189% different from snapshot (1523 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/ezp-message-content-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+  ● EZP modal calculator tests { width: 411, height: 731 } 500 › update finance terms when user updates amount passed into calculator
+    Expected image to match or be a close match to snapshot but was 7.825829364168007% different from snapshot (23512 differing pixels).
+    See diff for details: tests/functional/snapshots/US/DEV0000000PSZ/modal/__diff_output__/update-finance-terms-text-411-diff.png
+      33 |     }
+      34 |
+    > 35 |     expect(image).toMatchImageSnapshot({
+         |                   ^
+      36 |         customSnapshotsDir: `./tests/functional/snapshots/${locale}/${account}/modal`,
+      37 |         customSnapshotIdentifier
+      38 |     });
+      at modalSnapshot (spec/utils/modalSnapshot.js:35:19)
+ › 15 snapshots failed.
+ PASS  tests/functional/spec/DE/modal/modalFlex.test.js (32.215s)
+ PASS  tests/functional/spec/DE/modal/modalText.test.js (32.916s)
+ PASS  tests/functional/spec/US/legacy.test.js (41.633s)
+ PASS  tests/functional/spec/US/custom.test.js
+Snapshot Summary
+ › 40 snapshots failed from 4 test suites. Inspect your code changes or run `npm run test:func -- -u` to update them.
+Test Suites: 4 failed, 13 passed, 17 total
+Tests:       40 failed, 748 passed, 788 total
+Snapshots:   40 failed, 780 passed, 820 total
+Time:        1412.277s
+Ran all test suites.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! @paypal/messaging-components@1.12.3 test:func: `jest --projects tests/functional`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the @paypal/messaging-components@1.12.3 test:func script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/travis/.npm/_logs/2020-08-13T15_31_16_465Z-debug.log
+No snapshots found in /home/travis/build/paypal/paypal-messaging-components/tests/functional/__diff_output__/banner
+3 failed modal snapshots uploaded and viewable at https://imgur.com/a/xNUOwWO
+The command "./scripts/snapshot-tests/run-tests.sh" exited with 1.
+Done. Your build exited with 1.
+/home/travis/.travis/functions: line 536:  4405 Terminated              npm run dev:snapshot
+Top
+Search all repositories
+
+My Repositories
+
+ paypal/paypal-messaging-components  1188
+ Duration: 4 min 57 sec
+
+ Finished: about an hour ago
+
+ meteor/meteor  10426
+ Duration: 2 min 23 sec
+
+ Finished: 5 hours ago
+
+ Meteor-Community-Packages/meteor-user-status  138
+ Duration: 11 min 36 sec
+
+ Finished: 8 days ago
+
+©TRAVIS CI, GMBH
+Rigaer Straße 8
+10247 Berlin, Germany
+Work with Travis CI
+Blog
+Email
+Twitter
+HELP
+Documentation
+Community
+Changelog
+Travis CI vs Jenkins
+COMPANY
+Imprint
+Legal
+TRAVIS CI STATUS
+●
+Travis CI Status
