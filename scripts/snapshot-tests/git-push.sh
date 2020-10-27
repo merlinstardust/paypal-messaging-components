@@ -5,5 +5,5 @@ if [[ "$TRAVIS_PULL_REQUEST" = "false" ]] && [[ "$TRAVIS_BRANCH" = "develop" ]];
     git checkout --quiet develop
     git add .
     git commit --quiet -m "chore(snapshots): update snapshots [skip ci]"
-    git push
+    git push -v
 fi
