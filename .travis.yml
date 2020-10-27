@@ -48,17 +48,21 @@ jobs:
           env: TEST_PATH_PATTERN=spec/[^U][^S]/
           if: branch = develop AND type != pull_request
           script:
-              - ./scripts/snapshot-tests/update-snapshots.sh
+              - npm run test:func:ciupdate -- --testPathPattern $TEST_PATH_PATTERN
+              - ./scripts/snapshot-tests/git-push.sh
         - stage: update_snapshots_US_banner
           env: TEST_PATH_PATTERN=spec/US/banner
           if: branch = develop AND type != pull_request
           script:
-              - ./scripts/snapshot-tests/update-snapshots.sh
+              - npm run test:func:ciupdate -- --testPathPattern $TEST_PATH_PATTERN
+              - ./scripts/snapshot-tests/git-push.sh
         - stage: update_snapshots_US_modal
           env: TEST_PATH_PATTERN=spec/US/modal
           if: branch = develop AND type != pull_request
           script:
-              - ./scripts/snapshot-tests/update-snapshots.sh
+              - npm run test:func:ciupdate -- --testPathPattern $TEST_PATH_PATTERN
+              - sed -i -e 's/DIRTY_SNAPSHOTS=1/DIRTY_SNAPSHOTS=0/g' .travis.yml
+              - ./scripts/snapshot-tests/git-push.sh
 
         - stage: functional
           # Prevent script phase from running with TEST_PATH_PATTERN=none
