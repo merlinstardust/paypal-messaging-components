@@ -30,12 +30,17 @@ before_script:
     # Give dev server time to startup
     - sleep 40
     - ps cu -l
-    - echo 'PID'
+    - echo 'BEFORE_SCRIPT PID'
     - echo $DEV_SERVER_PID
 
 script:
     - npm run test:func -- --testPathPattern $TEST_PATH_PATTERN
     - ./scripts/snapshot-tests/collect-diffs.sh
+
+after_script:
+    - ps cu -l
+    - echo 'AFTER_SCRIPT PID'
+    - echo $DEV_SERVER_PID
 
 jobs:
     include:
