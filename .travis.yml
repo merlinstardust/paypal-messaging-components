@@ -29,7 +29,7 @@ before_script:
     - DEV_SERVER_PID=$!
     # Give dev server time to startup
     - sleep 40
-    - ps cu -l
+    - ps u -l
     - echo 'BEFORE_SCRIPT PID'
     - echo $DEV_SERVER_PID
 
@@ -38,7 +38,7 @@ script:
     - ./scripts/snapshot-tests/collect-diffs.sh
 
 after_script:
-    - ps cu -l
+    - ps u -l
     - echo 'AFTER_SCRIPT PID'
     - echo $DEV_SERVER_PID
 
