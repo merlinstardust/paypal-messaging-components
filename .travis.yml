@@ -29,7 +29,7 @@ before_script:
     - DEV_SERVER_PID=$!
     # Give dev server time to startup
     - sleep 40
-    - ps
+    - ps cu -l
     - echo 'PID'
     - echo $DEV_SERVER_PID
 
@@ -69,9 +69,7 @@ jobs:
               - ./scripts/snapshot-tests/git-push.sh
 
         - stage: functional
-          # Prevent script phase from running with TEST_PATH_PATTERN=none
-          if: env(TEST_PATH_PATTERN) != none
-        - env: TEST_PATH_PATTERN=spec/DE/banner
+          env: TEST_PATH_PATTERN=spec/DE/banner
         - env: TEST_PATH_PATTERN=spec/DE/modal
         - env: TEST_PATH_PATTERN=spec/GB/banner
         - env: TEST_PATH_PATTERN=spec/GB/modal
