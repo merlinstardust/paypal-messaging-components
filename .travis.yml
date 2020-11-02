@@ -26,8 +26,12 @@ before_install:
 
 before_script:
     - npm run dev:standalone &
+    - DEV_SERVER_PID=$!
     # Give dev server time to startup
     - sleep 40
+    - ps
+    - echo 'PID'
+    - echo $DEV_SERVER_PID
 
 script:
     - npm run test:func -- --testPathPattern $TEST_PATH_PATTERN
