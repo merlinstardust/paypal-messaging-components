@@ -1,12 +1,14 @@
 import createBannerTest from '../../createBannerTest';
 import accounts from '../accounts';
 
-const ratios = ['1x1', '1x4', '8x1', '20x1'];
-const colors = ['blue', 'black', 'white', 'gray', 'white-no-border', 'monochrome', 'grayscale'];
+// const ratios = ['1x1', '1x4', '8x1', '20x1'];
+// const colors = ['blue', 'black', 'white', 'gray', 'white-no-border', 'monochrome', 'grayscale'];
+const ratios = ['1x1'];
+const colors = ['blue'];
 // each viewport has a height of 700 as defined in the describe block below
 const viewports = [
-    { name: 'Large', width: 1100 },
-    { name: 'Small', width: 100 },
+    // { name: 'Large', width: 1100 },
+    // { name: 'Small', width: 100 },
     { name: 'Medium', width: 400 }
 ];
 
