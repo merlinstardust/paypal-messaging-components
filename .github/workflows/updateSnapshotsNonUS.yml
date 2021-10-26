@@ -17,6 +17,7 @@ jobs:
                 # locale: [DE, AU, FR, GB]
                 locale: [AU]
         steps:
+            - uses: actions/checkout@v2
             - uses: ./.github/composites/runServer
 
             - name: Update Banner Snapshots - ${{ matrix.locale }}

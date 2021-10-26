@@ -53,6 +53,7 @@ jobs:
                 # testPathPattern: [banner/text, banner/flex, modal/calc, modal/base, custom]
                 testPathPattern: [banner/text, banner/flex]
         steps:
+            - uses: actions/checkout@v2
             - uses: ./.github/composites/runServer
 
             - name: Compare US Snapshots - ${{ matrix.testPathPattern }}
