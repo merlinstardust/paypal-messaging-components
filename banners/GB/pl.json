@@ -21,7 +21,7 @@
     "subHeadline": [],
 
     "disclaimer": [
-        ["Late fees may apply.", ["default.fees"]],
-        ["Learn more", ["default"]]
+        ["Late fees may apply xx.", ["default.fees"]],
+        ["Learn more xx", ["default"]]
     ]
 }
