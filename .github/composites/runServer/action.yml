@@ -19,6 +19,7 @@ runs:
           run: echo "127.0.0.1 localhost.paypal.com" | sudo tee -a /etc/hosts
 
         - name: Run server
+          shell: bash
           run: |
               ((npm run dev:standalone 2>&1 & echo $! > pid.log) | tee server.log) &
               sleep 40
