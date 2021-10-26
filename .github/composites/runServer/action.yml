@@ -16,6 +16,7 @@ runs:
               useLockFile: false
 
         - name: Set domain
+          shell: bash
           run: echo "127.0.0.1 localhost.paypal.com" | sudo tee -a /etc/hosts
 
         - name: Run server
