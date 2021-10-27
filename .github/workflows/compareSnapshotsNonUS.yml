@@ -47,7 +47,7 @@ jobs:
             locale: ${{ steps.setMatrix.outputs.locale }}
         steps:
             - id: setMatrix
-              run: echo "::set-output name=locale::$(cat ./github/locales.json | tr '\n' ' ')"
+              run: echo "::set-output name=locale::$(cat ./.github/locales.json | tr '\n' ' ')"
 
     compareSnapshots:
         name: Non-US
