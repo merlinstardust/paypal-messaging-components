@@ -14,7 +14,7 @@ jobs:
             locale: ${{ steps.setMatrix.outputs.locale }}
         steps:
             - id: setMatrix
-              run: echo "::set-output name=locale::$(cat locales.json | tr '\n' ' ')"
+              run: echo "::set-output name=locale::$(cat ./github/locales.json | tr '\n' ' ')"
 
     updateSnapshots:
         name: Non-US
