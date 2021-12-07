@@ -91,16 +91,17 @@ export default function getDevAccountDetails({ account, amount, buyerCountry }) 
                     offersTemplate &&
                     JSON.parse(fs.readFileSync(`${CONTENT_PATH}/offers/${country}/${offersTemplate}`, 'utf8'));
 
-                const viewOffers = viewOffersTemplate && offers[product];
-
-                if (viewOffers) {
+                if (viewOffersTemplate) {
                     delete viewOffersTemplate.meta.variables; // Not part of the final response
                 }
+
+                const viewOffers = offers[product];
 
                 return {
                     template: JSON.stringify(viewTemplate),
                     morsVars: viewOffers ? getMorsVars(country, selectBestOffer(viewOffers, amount), amount) : {},
                     offers:
+                        viewOffersTemplate &&
                         viewOffers &&
                         viewOffers.map(offer => ({
                             template: JSON.stringify(viewOffersTemplate),
