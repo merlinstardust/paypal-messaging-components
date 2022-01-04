@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
       #if: ${{ github.event.workflow_run.event.inputs.update == true }}
     steps:
+      - uses: hmarr/debug-action@v2
+
       - name: Debug
         run: |
           echo "update: ${{ github.event.workflow_run.event.inputs.update }}"

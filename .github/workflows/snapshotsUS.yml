@@ -39,6 +39,8 @@ jobs:
                 testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
                 node: [12]
         steps:
+          - uses: hmarr/debug-action@v2
+
           - name: Debug
             run: |
               echo "update: ${{ github.event.inputs.update }} ${{ github.event.inputs.update == 'true' }}"
