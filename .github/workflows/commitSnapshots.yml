@@ -14,13 +14,13 @@ jobs:
     steps:
       - uses: hmarr/debug-action@v2
 
-      - name: Debug
-        run: |
-          echo "update: ${{ github.event.workflow_run.event.inputs.update }}"
-          echo "update 2: ${{ github.event.workflow.inputs.update }}"
-          echo "update 3: ${{ github.event.workflow.event.inputs.update }}"
-          echo "event: ${{ github.event }}"
-
+      - name: Commit Updated Snapshots
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+            commit_message: 'chore(snapshots): update snapshots [skip ci]'
+            commit_options: '--no-verify --quiet --allow-empty'
+            file_pattern: tests/functional/snapshots/US/
+            push_options: '-v'
       #      - name: Checkout repo
       #        uses: actions/checkout@v2
       #
