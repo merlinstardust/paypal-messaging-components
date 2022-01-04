@@ -18,6 +18,9 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.pull_request.head.ref }}
+            repository: ${{ github.event.pull_request.head.repo.full_name }}
           #   with:
           #     repository: 'merlinpatt/paypal-messaging-components'
           #     ref: 'patch-1'
