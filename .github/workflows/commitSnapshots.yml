@@ -16,7 +16,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
-          ref: pull/28/head
+          repository: 'merlinpatt/paypal-messaging-components'
+          ref: 'patch-1'
       
           #- name: Download Artifact
           #  uses: actions/github-script@v3.1.0
