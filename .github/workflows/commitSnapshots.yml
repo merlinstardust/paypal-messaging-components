@@ -5,6 +5,9 @@ on:
     workflows: ["Snapshots - US"]
     types:
       - completed
+  pull_request_target:
+    types: [labeled]
+
 
 jobs:
   commit:
@@ -15,9 +18,9 @@ jobs:
 
       - name: Checkout repo
         uses: actions/checkout@v2
-        with:
-          repository: 'merlinpatt/paypal-messaging-components'
-          ref: 'patch-1'
+          #   with:
+          #     repository: 'merlinpatt/paypal-messaging-components'
+          #     ref: 'patch-1'
       
           #- name: Download Artifact
           #  uses: actions/github-script@v3.1.0
