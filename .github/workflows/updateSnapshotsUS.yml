@@ -2,8 +2,7 @@ name: Update Snapshots - US
 on:
     # allow for manual triggers
     workflow_dispatch: {}
-    pull_request: {}
-    pull_request_target:
+    pull_request:
         types: [labeled]
 
 defaults:
@@ -13,7 +12,7 @@ defaults:
 jobs:
     getTestPathPatterns:
         name: Get Locales
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
+        if: github.event.label.name == 'snapshots' || github.event_name == 'workflow_dispatch'
         runs-on: ubuntu-latest
         outputs:
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
@@ -24,9 +23,25 @@ jobs:
             - id: setMatrix
               run: echo "::set-output name=testPathPattern::$(cat ./.github/configs/usTestPathPatterns.json | tr '\n' ' ')"
 
+    captureMetadata:
+        name: Capture Metadata
+        if: github.event_name == 'pull_request'
+        runs-on: ubuntu-latest
+        needs: getTestPathPatterns
+        steps:
+            - name: Capture PR Number
+              run: |
+                  mkdir -p ./workflow/metadata
+                  echo ${{ github.event.number }} > ./workflow/metadata/pull_number.txt
+
+            - name: Save Metadata
+              uses: actions/upload-artifact@v2
+              with:
+                  name: metadata
+                  path: workflow/metadata/
+
     updateSnapshots:
         name: US
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
         runs-on: ubuntu-latest
         needs: getTestPathPatterns
         strategy:
@@ -34,6 +49,12 @@ jobs:
                 testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
                 node: [12]
         steps:
+            - uses: hmarr/debug-action@v2
+
+            - name: machine echo github
+              env: { CONTENT : "${{ toJson(github) }}" }
+              run: "echo $CONTENT"
+
             - name: Checkout repo
               uses: actions/checkout@v2
 
@@ -54,13 +75,38 @@ jobs:
             - name: Update US Snapshots
               run: |
                   npm run test:func:ciupdate -- --testPathPattern spec/US/${{ matrix.testPathPattern }}
-                  git status
+                  git status --porcelain
 
-            - name: Commit Updated Snapshots - ${{ matrix.testPathPattern }}
-              uses: stefanzweifel/git-auto-commit-action@v4
+            - name: Format Artifact Inputs
+              id: artifactInputs
+              run: |
+                if [ -z "$(git status --porcelain)" ]
+                then
+                    echo "::set-output name=skip::true"
+                    exit 0
+                fi
+
+                ARTIFACT_NAME="snapshot-$(sed 's/\//-/g' <<< '${{ matrix.testPathPattern }}')"
+                echo "::set-output name=name::$ARTIFACT_NAME"
+
+                ARTIFACT_PATH="snapshots/"
+                echo "::set-output name=path::$ARTIFACT_PATH"
+
+                UPDATED_SNAPSHOTS=$(git status --porcelain | grep 'snapshots' | sed -E "s/^.{3}//")
+                echo "$UPDATED_SNAPSHOTS" | while read -r path
+                do
+                    newpath=$(echo $path | sed -E "s/^.+(snapshots.+)$/\\1/")
+                    newdir=$(echo $newpath | sed -E "s/^(.+\/)[^\/]+$/\\1/")
+
+                    mkdir -p "${{ github.workspace }}/$newdir"
+                    mv "${{ github.workspace }}/$path" "${{ github.workspace }}/$newpath"
+                done
+
+            - name: Save Snapshot Artifact
+              if: steps.artifactInputs.outputs.skip != 'true'
+              uses: actions/upload-artifact@v2
               with:
-                  commit_message: 'chore(snapshots): update US ${{ matrix.testPathPattern }} snapshots [skip ci]'
-                  commit_options: '--no-verify --quiet'
-                  commit_user_name: Snapshot Actions Bot
-                  file_pattern: tests/functional/snapshots/US/
-                  push_options: '-v'
+                  name: ${{ steps.artifactInputs.outputs.name }}
+                  path: ${{ steps.artifactInputs.outputs.path }}
+                  retention-days: 1
+

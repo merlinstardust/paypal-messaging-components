@@ -12,7 +12,6 @@ on:
 jobs:
     getTestPathPatterns:
         name: Get Locales
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
         runs-on: ubuntu-latest
         outputs:
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
