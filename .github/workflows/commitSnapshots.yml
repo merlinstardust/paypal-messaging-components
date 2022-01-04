@@ -15,6 +15,10 @@ jobs:
       - name: Debug
         run: |
           echo "update: ${{ github.event.workflow_run.event.inputs.update }}"
+          echo "update 2: ${{ github.event.workflow.inputs.update }}"
+          echo "update 3: ${{ github.event.workflow.event.inputs.update }}"
+          echo "event: ${{ github.event }}"
+
       #      - name: Checkout repo
       #        uses: actions/checkout@v2
       #
