@@ -65,6 +65,11 @@ const Message = function({ markup, meta, parentStyles, warnings }) {
     button.style.fontFamily = 'inherit';
     button.style.fontSize = 'inherit';
     button.innerHTML = markup ?? '';
+    
+    const testCi = false;
+    if (testCi) {
+        testCi = true;
+    }
 
     onReady({
         meta,
