@@ -41,7 +41,7 @@ jobs:
         steps:
           - name: Debug
             run: |
-              echo "update: ${{ github.event.inputs.update }} ${{ github.event.inputs.update == true }}"
+              echo "update: ${{ github.event.inputs.update }} ${{ github.event.inputs.update == 'true' }}"
               echo "pr id: ${{ github.event.inputs.pull_request }}"
           #            - name: Checkout repo
           #              uses: actions/checkout@v2
