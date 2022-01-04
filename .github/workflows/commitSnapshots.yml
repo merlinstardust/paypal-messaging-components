@@ -2,7 +2,7 @@ name: Commit Snapshots
 
 on:
   workflow_run:
-    workflows: ["Snapshot Comparison - US"]
+    workflows: ["Snapshots - US"]
     types:
       - completed
 
@@ -10,41 +10,44 @@ jobs:
   commit:
     name: Commit Snapshots
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.event.inputs.update == true }}
+      #if: ${{ github.event.workflow_run.event.inputs.update == true }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Download Artifact
-        uses: actions/github-script@v3.1.0
-        with:
-          script: |
-            var artifacts = await github.actions.listWorkflowRunArtifacts({
-               owner: context.repo.owner,
-               repo: context.repo.repo,
-               run_id: ${{github.event.workflow_run.id }},
-            });
-            var artifacts = artifacts.data.artifacts;
-
-            var downloads = await Promise.all(artifacts.data.artifacts.map(artifact => { 
-              return github.actions.downloadArtifact({
-                 owner: context.repo.owner,
-                 repo: context.repo.repo,
-                 artifact_id: artifact.id,
-                 archive_format: 'zip',
-              });
-            }));
-            var fs = require('fs');
-            var execSync = require('child_process').execSync;
-            downloads.forEach(download => {
-              fs.writeFileSync('${{github.workspace}}/snapshots.zip', Buffer.from(download.data));
-              execSync('unzip snapshots.zip -d tests/functional/snapshots/US')
-            });
-
-      - name: Commit Updated Snapshots
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-            commit_message: 'chore(snapshots): update snapshots [skip ci]'
-            commit_options: '--no-verify --quiet'
-            file_pattern: tests/functional/snapshots/US/
-            push_options: '-v'
+      - name: Debug
+        run: |
+          echo "update: ${{ github.event.workflow_run.event.inputs.update }}"
+      #      - name: Checkout repo
+      #        uses: actions/checkout@v2
+      #
+      #      - name: Download Artifact
+      #        uses: actions/github-script@v3.1.0
+      #        with:
+      #          script: |
+      #            var artifacts = await github.actions.listWorkflowRunArtifacts({
+      #               owner: context.repo.owner,
+      #               repo: context.repo.repo,
+      #               run_id: ${{github.event.workflow_run.id }},
+      #            });
+      #            var artifacts = artifacts.data.artifacts;
+      #
+      #            var downloads = await Promise.all(artifacts.data.artifacts.map(artifact => { 
+      #              return github.actions.downloadArtifact({
+      #                 owner: context.repo.owner,
+      #                 repo: context.repo.repo,
+      #                 artifact_id: artifact.id,
+      #                 archive_format: 'zip',
+      #              });
+      #            }));
+      #            var fs = require('fs');
+      #            var execSync = require('child_process').execSync;
+      #            downloads.forEach(download => {
+      #              fs.writeFileSync('${{github.workspace}}/snapshots.zip', Buffer.from(download.data));
+      #              execSync('unzip snapshots.zip -d tests/functional/snapshots/US')
+      #            });
+      #
+      #      - name: Commit Updated Snapshots
+      #        uses: stefanzweifel/git-auto-commit-action@v4
+      #        with:
+      #            commit_message: 'chore(snapshots): update snapshots [skip ci]'
+      #            commit_options: '--no-verify --quiet'
+      #            file_pattern: tests/functional/snapshots/US/
+      #            push_options: '-v'
