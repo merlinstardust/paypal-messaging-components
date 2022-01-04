@@ -21,7 +21,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          token: ${{ secrets.COMMIT_TOKEN }}
+          #token: ${{ secrets.COMMIT_TOKEN }}
           #   with:
           #     repository: 'merlinpatt/paypal-messaging-components'
           #     ref: 'patch-1'
