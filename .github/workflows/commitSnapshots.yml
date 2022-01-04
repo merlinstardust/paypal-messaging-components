@@ -14,6 +14,9 @@ jobs:
     steps:
       - uses: hmarr/debug-action@v2
 
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
       - name: Commit Updated Snapshots
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
@@ -21,8 +24,6 @@ jobs:
             commit_options: '--no-verify --quiet --allow-empty'
             file_pattern: tests/functional/snapshots/US/
             push_options: '-v'
-      #      - name: Checkout repo
-      #        uses: actions/checkout@v2
       #
       #      - name: Download Artifact
       #        uses: actions/github-script@v3.1.0
