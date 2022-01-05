@@ -145,7 +145,7 @@ const Content = ({ headerRef, contentWrapper }) => {
             <span className="corner" ref={cornerRef} />
             <div className={`sticky-apply-now ${showApplyNow ? 'show' : ''}`}>
                 <Button onClick={handleApplyNowClick} className="apply-now">
-                    Apply for PayPal Credit
+                    Apply for PayPal Credit because it is absolutely the best thing you've ever seen.
                 </Button>
                 <div>Subject to credit approval.</div>
                 <hr className="divider" />

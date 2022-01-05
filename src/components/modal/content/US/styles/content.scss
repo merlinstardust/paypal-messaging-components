@@ -11,7 +11,7 @@
         width: 100px;
         height: 2rem;
         overflow: hidden;
-        background-color: white;
+        background-color: orange;
         z-index: 51;
         top: 18rem;
         max-width: 640px;
@@ -19,7 +19,7 @@
         &:after {
             content: '';
             position: absolute;
-            background-color: $header-background;
+            background-color: yellow;
             border-bottom-left-radius: 100px 30px;
             bottom: 0;
             left: 0;
@@ -207,7 +207,7 @@
             top: 12rem;
             max-width: 640px;
             button.tab:focus span {
-                text-decoration: underline; 
+                text-decoration: underline;
             }
         }
 
@@ -216,12 +216,12 @@
                 visibility: hidden;
             }
         }
-        
+
         .sticky-apply-now {
             top: 12rem;
             button.tab {
                 :focus span {
-                    text-decoration: underline; 
+                    text-decoration: underline;
                 }
             }
         }
