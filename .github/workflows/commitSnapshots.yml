@@ -5,9 +5,6 @@ on:
     workflows: ["Snapshots - US"]
     types:
       - completed
-  pull_request_target:
-    types: [labeled]
-
 
 jobs:
   commit:
@@ -16,42 +13,67 @@ jobs:
     steps:
       - uses: hmarr/debug-action@v2
 
+      - name : machine echo github
+        env : { CONTENT : "${{ toJson(github) }}" }
+        run : "echo $CONTENT"
+      - name : machine echo $GITHUB_ACTOR
+        run : "echo $GITHUB_ACTOR"
+      - name : machine echo $GITHUB_EVENT_NAME
+        run : "echo $GITHUB_EVENT_NAME"
+      - name : machine echo $GITHUB_ACTIONS
+        run : "echo $GITHUB_ACTIONS"
+      - name : machine echo $GITHUB_WORKFLOW
+        run : "echo $GITHUB_WORKFLOW"
+      - name : machine echo $GITHUB_ACTION
+        run : "echo $GITHUB_ACTION"
+      - name : machine echo $GITHUB_REPOSITORY
+        run : "echo $GITHUB_REPOSITORY"
+      - name : machine echo $GITHUB_BASE_REF
+        run : "echo $GITHUB_BASE_REF"
+      - name : machine echo $GITHUB_HEAD_REF
+        run : "echo $GITHUB_HEAD_REF"
+      - name : machine echo $GITHUB_REF
+        run : "echo $GITHUB_REF"
+      - name : machine echo $GITHUB_SHA
+        run : "echo $GITHUB_SHA"
+      - name : machine echo $GITHUB_EVENT_PATH
+        run : "echo $GITHUB_EVENT_PATH"
+      - name : machine echo $GITHUB_WORKSPACE
+        run : "echo $GITHUB_WORKSPACE"
+      - name : machine echo $HOME
+        run : "echo $HOME"
+
       - name: Checkout repo
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
-          #token: ${{ secrets.COMMIT_TOKEN }}
-          #   with:
-          #     repository: 'merlinpatt/paypal-messaging-components'
-          #     ref: 'patch-1'
+          token: ${{ secrets.COMMIT_TOKEN }}
       
-          #- name: Download Artifact
-          #  uses: actions/github-script@v3.1.0
-          #  with:
-          #    script: |
-          #      var artifacts = await github.actions.listWorkflowRunArtifacts({
-          #         owner: context.repo.owner,
-          #         repo: context.repo.repo,
-          #         run_id: ${{github.event.workflow_run.id }},
-          #      });
-          #      var downloads = await Promise.all(artifacts.data.artifacts.map(artifact => { 
-          #        return github.actions.downloadArtifact({
-          #           owner: context.repo.owner,
-          #           repo: context.repo.repo,
-          #           artifact_id: artifact.id,
-          #           archive_format: 'zip',
-          #        });
-          #      }));
-          #      var fs = require('fs');
-          #      var execSync = require('child_process').execSync;
-          #      downloads.forEach(download => {
-          #        fs.writeFileSync('${{github.workspace}}/snapshots.zip', Buffer.from(download.data));
-          #        execSync('unzip snapshots.zip -d tests/functional/snapshots/US')
-          #      });
+            #      - name: Download Artifact
+            #        uses: actions/github-script@v3.1.0
+            #        with:
+            #          script: |
+            #            var artifacts = await github.actions.listWorkflowRunArtifacts({
+            #               owner: context.repo.owner,
+            #               repo: context.repo.repo,
+            #               run_id: ${{github.event.workflow_run.id }},
+            #            });
+            #            var downloads = await Promise.all(artifacts.data.artifacts.map(artifact => { 
+            #              return github.actions.downloadArtifact({
+            #                 owner: context.repo.owner,
+            #                 repo: context.repo.repo,
+            #                 artifact_id: artifact.id,
+            #                 archive_format: 'zip',
+            #              });
+            #            }));
+            #            var fs = require('fs');
+            #            var execSync = require('child_process').execSync;
+            #            downloads.forEach(download => {
+            #              fs.writeFileSync('${{github.workspace}}/snapshots.zip', Buffer.from(download.data));
+            #              execSync('unzip snapshots.zip -d tests/functional/snapshots')
       - name: Fake Commit data
-        run: |
-          echo $RANDOM > temp.txt
+        run: echo $RANDOM > temp.txt
 
       - name: Commit Updated Snapshots
         uses: stefanzweifel/git-auto-commit-action@v4

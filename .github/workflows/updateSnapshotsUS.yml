@@ -2,8 +2,7 @@ name: Update Snapshots - US
 on:
     # allow for manual triggers
     workflow_dispatch: {}
-    pull_request: {}
-    pull_request_target:
+    pull_request:
         types: [labeled]
 
 defaults:
@@ -13,7 +12,7 @@ defaults:
 jobs:
     getTestPathPatterns:
         name: Get Locales
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
+        if: github.event.pull_request.label.name == 'snapshots'
         runs-on: ubuntu-latest
         outputs:
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
@@ -26,7 +25,6 @@ jobs:
 
     updateSnapshots:
         name: US
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
         runs-on: ubuntu-latest
         needs: getTestPathPatterns
         strategy:
@@ -34,33 +32,38 @@ jobs:
                 testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
                 node: [12]
         steps:
-            - name: Checkout repo
-              uses: actions/checkout@v2
+            - uses: hmarr/debug-action@v2
 
-            - name: Setup node
-              uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node }}
+            - name : machine echo github
+              env : { CONTENT : "${{ toJson(github) }}" }
+              run : "echo $CONTENT"
 
-            - name: 📥 Download deps
-              uses: bahmutov/npm-install@v1
-              with:
-                  useLockFile: false
+                #            - name: Checkout repo
+                #              uses: actions/checkout@v2
+                #
+                #            - name: Setup node
+                #              uses: actions/setup-node@v1
+                #              with:
+                #                  node-version: ${{ matrix.node }}
+                #
+                #            - name: 📥 Download deps
+                #              uses: bahmutov/npm-install@v1
+                #              with:
+                #                  useLockFile: false
+                #
+                #            - name: Run server
+                #              run: |
+                #                  ./.github/scripts/runServer.sh
+                #
+                #            - name: Update US Snapshots
+                #              run: |
+                #                  rm -rf tests/functional/snapshots
+                #                  npm run test:func:ciupdate -- --testPathPattern spec/US/${{ matrix.testPathPattern }}
+                #                  git status
+                #
+                #            - name: Save Snapshot Artifact
+                #              uses: actions/upload-artifact@v2
+                #              with:
+                #                  name: snapshots-${{ matrix.testPathPattern }}
+                #                  path: tests/functional/snapshots
 
-            - name: Run server
-              run: |
-                  ./.github/scripts/runServer.sh
-
-            - name: Update US Snapshots
-              run: |
-                  npm run test:func:ciupdate -- --testPathPattern spec/US/${{ matrix.testPathPattern }}
-                  git status
-
-            - name: Commit Updated Snapshots - ${{ matrix.testPathPattern }}
-              uses: stefanzweifel/git-auto-commit-action@v4
-              with:
-                  commit_message: 'chore(snapshots): update US ${{ matrix.testPathPattern }} snapshots [skip ci]'
-                  commit_options: '--no-verify --quiet'
-                  commit_user_name: Snapshot Actions Bot
-                  file_pattern: tests/functional/snapshots/US/
-                  push_options: '-v'
