@@ -14,7 +14,7 @@ function getPPMonogramBase64(logoColor) {
 }
 
 export const logos = {
-    AWESOME: {},
+    AWESOME_TWO: {},
     PRIMARY: {
         COLOR: [
             {
