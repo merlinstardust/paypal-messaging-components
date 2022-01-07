@@ -10,26 +10,30 @@ on:
     pull_request: {}
 
 jobs:
-    getLocales:
+    getMatrix:
         name: Get Locales
         runs-on: ubuntu-latest
         outputs:
             locale: ${{ steps.setMatrix.outputs.locale }}
+            testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - id: setMatrix
-              run: echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+              run: |
+                  echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+                  echo "::set-output name=testPathPattern::$(cat ./.github/configs/testPathPatterns.json | tr '\n' ' ')"
 
     compareSnapshots:
         name: Non-US
         runs-on: ubuntu-latest
-        needs: getLocales
+        needs: getMatrix
         strategy:
             fail-fast: false
             matrix:
-                locale: ${{ fromJSON(needs.getLocales.outputs.locale) }}
+                locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
+                testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
                 node: [12]
         steps:
             - name: Checkout repo
@@ -49,15 +53,17 @@ jobs:
               run: |
                   ./.github/scripts/runServer.sh
 
-            - name: Compare Banner Snapshots - ${{ matrix.locale }}
+            - name: Compare Snapshots - ${{ matrix.locale }}/${{ matrix.testPathPattern }}
               continue-on-error: true
               run: |
-                  npm run test:func -- --testPathPattern spec/${{ matrix.locale }}/banner
-
-            - name: Compare Modal Snapshot - ${{ matrix.locale }}
-              continue-on-error: true
-              run: |
-                  npm run test:func -- --testPathPattern spec/${{ matrix.locale }}/modal
+                  path=spec/${{ matrix.locale }}/${{ matrix.testPathPattern }}
+                  if [ -d $path ]
+                  then
+                      npm run test:func -- --testPathPattern $path
+                  else
+                      echo "$path does not exist"
+                      exit 0
+                  fi
 
             - name: Collect Diffs and Upload to Imgur
               run: |

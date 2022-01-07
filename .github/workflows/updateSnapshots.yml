@@ -12,12 +12,15 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
             locale: ${{ steps.setMatrix.outputs.locale }}
+            testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - id: setMatrix
-              run: echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+              run: |
+                  echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+                  echo "::set-output name=testPathPattern::$(cat ./.github/configs/testPathPatterns.json | tr '\n' ' ')"
 
     captureMetadata:
         name: Capture Metadata
@@ -43,6 +46,7 @@ jobs:
         strategy:
             matrix:
                 locale: ${{ fromJSON(needs.getLocales.outputs.locale) }}
+                testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
                 node: [12]
         steps:
             - uses: hmarr/debug-action@v2
@@ -68,14 +72,16 @@ jobs:
               run: |
                   ./.github/scripts/runServer.sh
 
-            - name: Update Banner Snapshots - ${{ matrix.locale }}
+            - name: Update Snapshots - ${{ matrix.locale }}/${{ matrix.testPathPattern }}
               run: |
-                  npm run test:func:ciupdate -- --testPathPattern spec/${{ matrix.locale }}/banner
-                  git status --porcelain
-
-            - name: Update Modal Snapshots - ${{ matrix.locale }}
-              run: |
-                  npm run test:func:ciupdate -- --testPathPattern spec/${{ matrix.locale }}/modal
+                  path=spec/${{ matrix.locale }}/${{ matrix.testPathPattern }}
+                  if [ -d $path ]
+                  then
+                      npm run test:func:ciupdate -- --testPathPattern $path
+                  else
+                      echo "$path does not exist"
+                      exit 0
+                  fi
                   git status --porcelain
 
             - name: Format Artifact Inputs
