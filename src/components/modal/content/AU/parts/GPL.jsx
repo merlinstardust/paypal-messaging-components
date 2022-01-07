@@ -16,6 +16,8 @@ const GPL = () => {
 
                 <h3>{qualifying ? subHeadline.qualified : auCurrencyFormat(subHeadline.unqualified)}</h3>
 
+                <h1>Some new stuff</h1>
+
                 <div className="call-to-action">
                     <div>
                         <p>

@@ -14,6 +14,8 @@ export default ({ switchTab }) => {
             <div className="description">
                 <h2>{products.length > 1 && !switchTab ? headline.multiProduct : headline.singleProduct}</h2>
 
+                <h1>Some new stuff</h1>
+
                 <h3>
                     {qualifying.toLowerCase() === 'true'
                         ? subHeadline.qualified
