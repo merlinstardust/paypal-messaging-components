@@ -2,11 +2,10 @@ name: Snapshot Comparison Tests - Non-US
 on:
     # allow for manual triggers
     workflow_dispatch: {}
-
+    workflow_call: {}
     push:
         branches:
             - develop
-            - release
     pull_request: {}
 
 jobs:
@@ -30,7 +29,6 @@ jobs:
             fail-fast: false
             matrix:
                 locale: ${{ fromJSON(needs.getLocales.outputs.locale) }}
-                node: [12]
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -38,7 +36,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node }}
+                  node-version: 12
 
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1

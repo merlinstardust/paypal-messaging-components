@@ -2,17 +2,15 @@ name: Snapshot Comparison Tests - US
 on:
     # allow for manual triggers
     workflow_dispatch: {}
-
+    workflow_call: {}
     push:
         branches:
             - develop
-            - release
     pull_request: {}
 
 jobs:
     getTestPathPatterns:
         name: Get Locales
-        if: contains(github.event.pull_request.labels.*.name, 'snapshots')
         runs-on: ubuntu-latest
         outputs:
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
@@ -31,7 +29,6 @@ jobs:
             fail-fast: false
             matrix:
                 testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
-                node: [12]
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -39,7 +36,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node }}
+                  node-version: 12
 
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
