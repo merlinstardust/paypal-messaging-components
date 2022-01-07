@@ -1,4 +1,4 @@
-name: Snapshot Comparison Tests - Non-US
+name: Snapshot Comparison Tests
 on:
     # allow for manual triggers
     workflow_dispatch: {}
@@ -11,7 +11,7 @@ on:
 
 jobs:
     getMatrix:
-        name: Get Locales
+        name: Get Matrix
         runs-on: ubuntu-latest
         outputs:
             locale: ${{ steps.setMatrix.outputs.locale }}
@@ -33,7 +33,7 @@ jobs:
             fail-fast: false
             matrix:
                 locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
-                testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
+                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
                 node: [12]
         steps:
             - name: Checkout repo
