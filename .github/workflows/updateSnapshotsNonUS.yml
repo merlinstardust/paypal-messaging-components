@@ -44,12 +44,6 @@ jobs:
             matrix:
                 locale: ${{ fromJSON(needs.getLocales.outputs.locale) }}
         steps:
-            - uses: hmarr/debug-action@v2
-
-            - name: machine echo github
-              env: { CONTENT: '${{ toJson(github) }}' }
-              run: 'echo $CONTENT'
-
             - name: Checkout repo
               uses: actions/checkout@v2
 

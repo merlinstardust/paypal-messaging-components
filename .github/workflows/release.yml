@@ -7,16 +7,6 @@ on:
             - release
 
 jobs:
-    debug:
-        name: Debug
-        runs-on: ubuntu-latest
-        steps:
-            - uses: hmarr/debug-action@v2
-
-            - name: machine echo github
-              env: { CONTENT: '${{ toJson(github) }}' }
-              run: 'echo $CONTENT'
-
     core:
         uses: paypal/paypal-messaging-components/.github/workflows/core.yml@release
 

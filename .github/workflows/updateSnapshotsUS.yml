@@ -48,12 +48,6 @@ jobs:
             matrix:
                 testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
         steps:
-            - uses: hmarr/debug-action@v2
-
-            - name: machine echo github
-              env: { CONTENT: '${{ toJson(github) }}' }
-              run: 'echo $CONTENT'
-
             - name: Checkout repo
               uses: actions/checkout@v2
 
