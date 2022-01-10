@@ -47,21 +47,14 @@ jobs:
             matrix:
                 locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
                 testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
-                node: [12]
         steps:
-            - uses: hmarr/debug-action@v2
-
-            - name: machine echo github
-              env: { CONTENT: '${{ toJson(github) }}' }
-              run: 'echo $CONTENT'
-
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - name: Setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node }}
+                  node-version: 12
 
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1

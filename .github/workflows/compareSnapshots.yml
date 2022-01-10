@@ -33,7 +33,6 @@ jobs:
             matrix:
                 locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
                 testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
-                node: [12]
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -41,7 +40,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node }}
+                  node-version: 12
 
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
