@@ -31,14 +31,14 @@ jobs:
                     for group in $groups
                     do
                         echo "$locale/$group"
-                        if [ -f "./tests/functional/spec/$locale/$group.test.js" ]; then
+                        if [ -f "${{ github.workspace }}/tests/functional/spec/$locale/$group.test.js" ]; then
                             validTestPathPatterns+=("$locale/$group")
                         fi
                     done
                   done
 
                   testPathPatternsJson=$(printf '"%s"', "${validTestPathPatterns[@]}")
-                  testPathPatternsJson="[${testPathPatternJson%?}]"
+                  testPathPatternsJson="[${testPathPatternsJson%?}]"
 
                   echo "::set-output name=testPathPatterns::$testPathPatternsJson"
 
@@ -60,7 +60,7 @@ jobs:
                   path: workflow/metadata/
 
     updateSnapshots:
-        name: Non-US
+        name: Update Snapshots
         runs-on: ubuntu-latest
         needs: getMatrix
         strategy:
