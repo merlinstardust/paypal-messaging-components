@@ -1,33 +1,32 @@
-name: Update Snapshots - US
+name: Update Snapshots
 on:
     # allow for manual triggers
     workflow_dispatch: {}
     pull_request:
         types: [labeled]
 
-defaults:
-    run:
-        shell: bash
-
 jobs:
-    getTestPathPatterns:
-        name: Get Locales
+    getMatrix:
+        name: Get Matrix
         if: github.event.label.name == 'snapshots' || github.event_name == 'workflow_dispatch'
         runs-on: ubuntu-latest
         outputs:
+            locale: ${{ steps.setMatrix.outputs.locale }}
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - id: setMatrix
-              run: echo "::set-output name=testPathPattern::$(cat ./.github/configs/usTestPathPatterns.json | tr '\n' ' ')"
+              run: |
+                  echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+                  echo "::set-output name=testPathPattern::$(cat ./.github/configs/testPathPatterns.json | tr '\n' ' ')"
 
     captureMetadata:
         name: Capture Metadata
         if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest
-        needs: getTestPathPatterns
+        needs: getMatrix
         steps:
             - name: Capture PR Number
               run: |
@@ -41,12 +40,13 @@ jobs:
                   path: workflow/metadata/
 
     updateSnapshots:
-        name: US
+        name: Non-US
         runs-on: ubuntu-latest
-        needs: getTestPathPatterns
+        needs: getMatrix
         strategy:
             matrix:
-                testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
+                locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
+                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -65,9 +65,16 @@ jobs:
               run: |
                   ./.github/scripts/runServer.sh
 
-            - name: Update US Snapshots
+            - name: Update Snapshots - ${{ matrix.locale }}/${{ matrix.testPathPattern }}
               run: |
-                  npm run test:func:ciupdate -- --testPathPattern spec/US/${{ matrix.testPathPattern }}
+                  path=spec/${{ matrix.locale }}/${{ matrix.testPathPattern }}
+                  if [ -d $path ]
+                  then
+                      npm run test:func:ciupdate -- --testPathPattern $path
+                  else
+                      echo "$path does not exist"
+                      exit 0
+                  fi
                   git status --porcelain
 
             - name: Format Artifact Inputs
@@ -79,7 +86,7 @@ jobs:
                       exit 0
                   fi
 
-                  ARTIFACT_NAME="snapshot-$(sed 's/\//-/g' <<< '${{ matrix.testPathPattern }}')"
+                  ARTIFACT_NAME="snapshot-$(sed 's/\//-/g' <<< '${{ matrix.locale }}/${{ matrix.testPathPattern }}')"
                   echo "::set-output name=name::$ARTIFACT_NAME"
 
                   ARTIFACT_PATH="snapshots/"

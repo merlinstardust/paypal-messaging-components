@@ -2,7 +2,7 @@ name: Commit Snapshots
 
 on:
     workflow_run:
-        workflows: ['Update Snapshots - US', 'Update Snapshots - Non-US']
+        workflows: ['Update Snapshots']
         types:
             - completed
 
