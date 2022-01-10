@@ -1,4 +1,4 @@
-name: Snapshot Comparison Tests - US
+name: Snapshot Comparison Tests
 on:
     # allow for manual triggers
     workflow_dispatch: {}
@@ -9,26 +9,31 @@ on:
     pull_request: {}
 
 jobs:
-    getTestPathPatterns:
-        name: Get Locales
+    getMatrix:
+        name: Get Matrix
         runs-on: ubuntu-latest
         outputs:
+            locale: ${{ steps.setMatrix.outputs.locale }}
             testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - id: setMatrix
-              run: echo "::set-output name=testPathPattern::$(cat ./.github/configs/usTestPathPatterns.json | tr '\n' ' ')"
+              run: |
+                  echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
+                  echo "::set-output name=testPathPattern::$(cat ./.github/configs/testPathPatterns.json | tr '\n' ' ')"
 
     compareSnapshots:
-        name: US
+        name: Non-US
         runs-on: ubuntu-latest
-        needs: getTestPathPatterns
+        needs: getMatrix
         strategy:
             fail-fast: false
             matrix:
-                testPathPattern: ${{ fromJSON(needs.getTestPathPatterns.outputs.testPathPattern) }}
+                locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
+                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
+                node: [12]
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -36,7 +41,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: 12
+                  node-version: ${{ matrix.node }}
 
             - name: 📥 Download deps
               uses: bahmutov/npm-install@v1
@@ -47,10 +52,17 @@ jobs:
               run: |
                   ./.github/scripts/runServer.sh
 
-            - name: Compare US Snapshots - ${{ matrix.testPathPattern }}
+            - name: Compare Snapshots - ${{ matrix.locale }}/${{ matrix.testPathPattern }}
               continue-on-error: true
               run: |
-                  npm run test:func -- --testPathPattern spec/US/${{ matrix.testPathPattern }}
+                  path=spec/${{ matrix.locale }}/${{ matrix.testPathPattern }}
+                  if [ -d $path ]
+                  then
+                      npm run test:func -- --testPathPattern $path
+                  else
+                      echo "$path does not exist"
+                      exit 0
+                  fi
 
             - name: Collect Diffs and Upload to Imgur
               run: |
