@@ -13,16 +13,36 @@ jobs:
         name: Get Matrix
         runs-on: ubuntu-latest
         outputs:
-            locale: ${{ steps.setMatrix.outputs.locale }}
-            testPathPattern: ${{ steps.setMatrix.outputs.testPathPattern }}
+            testPathPatterns: ${{ steps.setTestPathPatterns.outputs.testPathPatterns }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - id: setMatrix
               run: |
-                  echo "::set-output name=locale::$(cat ./.github/configs/locales.json | tr '\n' ' ')"
-                  echo "::set-output name=testPathPattern::$(cat ./.github/configs/testPathPatterns.json | tr '\n' ' ')"
+                  echo "::set-output name=matrix::$(cat ./.github/configs/matrix.json | tr '\n' ' ')"
+
+            - id: setTestPathPatterns
+              run: |
+                  locales=$(echo "${{ join(fromJSON(steps.setMatrix.outputs.matrix).locales) }}" | tr ',' '\n')
+                  groups=$(echo "${{ join(fromJSON(steps.setMatrix.outputs.matrix).groups) }}" | tr ',' '\n')
+                  validTestPathPatterns=()
+
+                  for locale in $locales
+                  do
+                    for group in $groups
+                    do
+                        echo "$locale/$group"
+                        if [ -f "./tests/functional/spec/$locale/$group.test.js" ]; then
+                            validTestPathPatterns+=("$locale/$group")
+                        fi
+                    done
+                  done
+
+                  testPathPatternsJson=$(printf '"%s"', "${validTestPathPatterns[@]}")
+                  testPathPatternsJson="[${testPathPatternJson%?}]"
+
+                  echo "::set-output name=testPathPatterns::$testPathPatternsJson"
 
     compareSnapshots:
         name: Non-US
@@ -31,8 +51,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                locale: ${{ fromJSON(needs.getMatrix.outputs.locale) }}
-                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPattern) }}
+                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPatterns) }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
@@ -51,17 +70,10 @@ jobs:
               run: |
                   ./.github/scripts/runServer.sh
 
-            - name: Compare Snapshots - ${{ matrix.locale }}/${{ matrix.testPathPattern }}
+            - name: Compare Snapshots - ${{ matrix.testPathPattern }}
               continue-on-error: true
               run: |
-                  path=spec/${{ matrix.locale }}/${{ matrix.testPathPattern }}
-                  if [ -d $path ]
-                  then
-                      npm run test:func -- --testPathPattern $path
-                  else
-                      echo "$path does not exist"
-                      exit 0
-                  fi
+                  npm run test:func -- --testPathPattern "${{ matrix.testPathPattern }}"
 
             - name: Collect Diffs and Upload to Imgur
               run: |
