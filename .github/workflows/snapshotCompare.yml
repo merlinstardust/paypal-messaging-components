@@ -24,6 +24,12 @@ jobs:
                   validTestPaths=$(ls ./tests/functional/spec/*/*/*.test.js | sed -E 's/(.*spec\/|.test.js)//g')
                   testPathPatterns="[ \"$(echo $validTestPaths | tr '\n' ',' | sed 's/,$//' | sed 's/,/","/g' )\" ]"
                   echo "from yaml"
+                  echo $validTestPaths | sed -z 's/\n/,/g'
+                  echo
+                  echo $validTestPaths | sed -z 's/\n/,/g;s/,$//'
+                  echo
+                  echo $validTestPaths | sed -z 's/\n/","/g'
+                  echo
                   echo $validTestPaths | tr '\n' ','
                   echo
                   echo $validTestPaths | tr '\n' ',' | sed 's/,/","/g'
