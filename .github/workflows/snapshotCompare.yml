@@ -28,11 +28,19 @@ jobs:
                   echo $validTestPaths
                   echo '----';
 
+                  echo 'validTestPaths | sed s/ /,/'
+                  echo $validTestPaths | sed 's/ /,/'
+                  echo '----';
+
+                  echo 'validTestPaths | sed s/ /,/'
+                  echo $validTestPaths | sed 's/ /,/;s/,$//'
+                  echo '----';
+
                   echo 'validTestPaths | sed -z s/\n/,/g'
                   echo $validTestPaths | sed -z 's/\n/,/g'
                   echo '----';
 
-                  echo 'validTestPaths | sed -z s/\n/,/g;s/,$//
+                  echo 'validTestPaths | sed -z s/\n/,/g;s/,$//'
                   echo $validTestPaths | sed -z 's/\n/,/g;s/,$//'
                   echo '----';
 
