@@ -23,6 +23,7 @@ const Header = ({ children, className = '', logo, wrapperRef }) => {
     return (
         <div className={`header-wrapper ${className}`} ref={wrapperRef}>
             <div className="header-container">
+                <h1>Test</h1>
                 <header className="header">
                     <div className="logo-wrapper">
                         <div className="logo" alt="PayPal Credit">
