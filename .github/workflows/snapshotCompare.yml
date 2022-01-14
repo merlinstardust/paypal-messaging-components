@@ -20,6 +20,13 @@ jobs:
 
             - id: setTestPathPatterns
               run: |
+                  validTestPaths=$(ls ./tests/functional/spec/*/*/*.test.js | sed -E 's/(.*spec\/|.test.js)//g')
+                  testPathPatterns="[ \"$(echo $validTestPaths | tr '\n' ',' | sed 's/,$//' | sed 's/,/","/g' )\" ]"
+                  echo "from yaml"
+                  echo $testPathPatterns
+                  echo
+                  echo "from script"
+                  echo ./.github/scripts/getTestPathPatterns.sh
                   echo "::set-output name=testPathPatterns::$(echo ./.github/scripts/getTestPathPatterns.sh)"
 
     compareSnapshots:
