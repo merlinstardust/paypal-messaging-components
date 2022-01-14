@@ -26,8 +26,8 @@ jobs:
                   echo $testPathPatterns
                   echo
                   echo "from script"
-                  echo ./.github/scripts/getTestPathPatterns.sh
-                  echo "::set-output name=testPathPatterns::$(echo ./.github/scripts/getTestPathPatterns.sh)"
+                  ./.github/scripts/getTestPathPatterns.sh
+                  echo "::set-output name=testPathPatterns::$(./.github/scripts/getTestPathPatterns.sh)"
 
     compareSnapshots:
         name: Compare
