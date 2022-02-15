@@ -27,42 +27,47 @@ jobs:
             - id: setTestConfigs
               name: Set test config environment variables
               run: |
+                  ls ./tests/functional/v2/config/*/DEV* | sed -E 's/(^.*config\/)//;s/.js//'
+                  validTestConfigs=$(ls ./tests/functional/v2/config/*/DEV* | sed -E 's/(^.*config\/)//;s/.js//')
+                  testConfigs="[ \"$(echo $validTestConfigs | tr '\n' ',' | sed 's/ /,/g;s/,$//;s/,/","/g' )\" ]"
+                  echo $validTestConfigs
+                  echo $testConfigs
                   echo "::set-output name=testConfigs::$(./.github/scripts/getTestConfigs.sh)"
 
-    compareSnapshots:
-        name: Compare
-        runs-on: ubuntu-latest
-        needs: getMatrix
-        strategy:
-            fail-fast: false
-            matrix:
-                testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPatterns) }}
-        steps:
-            - name: Checkout repo
-              uses: actions/checkout@v2
+    # compareSnapshots:
+    #     name: Compare
+    #     runs-on: ubuntu-latest
+    #     needs: getMatrix
+    #     strategy:
+    #         fail-fast: false
+    #         matrix:
+    #             testPathPattern: ${{ fromJSON(needs.getMatrix.outputs.testPathPatterns) }}
+    #     steps:
+    #         - name: Checkout repo
+    #           uses: actions/checkout@v2
 
-            - name: Setup node
-              uses: actions/setup-node@v1
-              with:
-                  node-version: 12
+    #         - name: Setup node
+    #           uses: actions/setup-node@v1
+    #           with:
+    #               node-version: 12
 
-            - name: 📥 Download deps
-              uses: bahmutov/npm-install@v1
-              with:
-                  useLockFile: false
+    #         - name: 📥 Download deps
+    #           uses: bahmutov/npm-install@v1
+    #           with:
+    #               useLockFile: false
 
-            - name: Run server
-              run: |
-                  ./.github/scripts/runServer.sh
+    #         - name: Run server
+    #           run: |
+    #               ./.github/scripts/runServer.sh
 
-            - name: Compare Snapshots - ${{ matrix.testPathPattern }}
-              continue-on-error: true
-              run: |
-                  npm run test:func -- --testPathPattern "${{ matrix.testPathPattern }}"
+    #         - name: Compare Snapshots - ${{ matrix.testPathPattern }}
+    #           continue-on-error: true
+    #           run: |
+    #               npm run test:func -- --testPathPattern "${{ matrix.testPathPattern }}"
 
-            - name: Collect Diffs and Upload to Imgur
-              run: |
-                  ./scripts/snapshot-tests/collect-diffs.sh
+    #         - name: Collect Diffs and Upload to Imgur
+    #           run: |
+    #               ./scripts/snapshot-tests/collect-diffs.sh
 
     compareSnapshotsV2:
         name: Compare V2
