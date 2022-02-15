@@ -27,11 +27,7 @@ jobs:
             - id: setTestConfigs
               name: Set test config environment variables
               run: |
-                  ls ./tests/functional/v2/config/*/DEV* | sed -E 's/(^.*config\/)//;s/.js//'
-                  validTestConfigs=$(ls ./tests/functional/v2/config/*/DEV* | sed -E 's/(^.*config\/)//;s/.js//')
-                  testConfigs="[ \"$(echo $validTestConfigs | tr '\n' ',' | sed 's/ /,/g;s/,$//;s/,/","/g' )\" ]"
-                  echo $validTestConfigs
-                  echo $testConfigs
+                  ./.github/scripts/getTestConfigs.sh
                   echo "::set-output name=testConfigs::$(./.github/scripts/getTestConfigs.sh)"
 
     # compareSnapshots:
