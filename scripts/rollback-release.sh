@@ -15,7 +15,7 @@ then
 
   if [[ $REPLY =~ ^[Yy]$ ]];
   then
-    # git push -f
+    # git push -f https://github.com/paypal/paypal-messaging-components.git
   else
     echo "Skipping force push"
   fi
